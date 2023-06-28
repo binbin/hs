@@ -122,10 +122,20 @@ export default function App() {
     },
   ];
   const transform = async (values) => {
-    const valuesArr = values.text
-      .trim()
-      .split("\n")
-      .map((item) => item.trim());
+    // const valuesArr = values.text
+    //   .trim()
+    //   .split("\n")
+    //   .map((item) => item.trim());
+    const valuesArr = Array.from(
+      new Set(
+        values.text
+          .trim()
+          .split("\n")
+          .filter((item) => item.trim().length > 0)
+          .map((item) => item.trim())
+      )
+    );
+
     const [begin, end] = values.dates;
     // console.log(begin.format("YYYYMMDD"), end.format("YYYYMMDD"));
     // console.log("valuesArr", valuesArr);
